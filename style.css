@@ -263,3 +263,183 @@ body {
     font-size: 14px;
     opacity: 0.8;
 }
+
+
+
+.hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+    z-index: 3;
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    .nav-left,
+    .nav-right {
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .hamburger {
+        display: block;
+        margin-left: auto;
+    }
+
+    .navbar a {
+        font-size: 16px;
+    }
+}
+
+.show {
+    display: flex !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 992px) {
+    .navbar {
+        padding: 0 100px;
+        font-size: 16px;
+    }
+
+    .content h1 {
+        font-size: 40px;
+    }
+
+    .content h2 {
+        font-size: 22px;
+    }
+
+    .years {
+        font-size: 32px;
+    }
+
+    .about {
+        padding: 40px 50px;
+    }
+
+    .models {
+        padding: 40px 50px;
+    }
+
+    .about-card,
+    .model-card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px;
+        font-size: 14px;
+        gap: 10px;
+    }
+
+    .nav-left,
+    .nav-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo {
+        width: 70px;
+        height: 70px;
+        top: 10px;
+    }
+
+    .content h1 {
+        font-size: 28px;
+    }
+
+    .content h2 {
+        font-size: 18px;
+    }
+
+    .years {
+        font-size: 24px;
+    }
+
+    .about {
+        padding: 20px;
+    }
+
+    .models {
+        padding: 20px;
+    }
+
+    .about-card,
+    .model-card {
+        width: 100%;
+    }
+
+    .about-gallery,
+    .models-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+.editor {
+    font-size: 50px;
+    color: #fff;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #052686,
+        0 0 20px #09193e,
+        0 0 40px #3d2c07;
+    
+}
+
+#loading {
+    position: fixed;
+    inset: 0;
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid gold;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+    -webkit-animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
