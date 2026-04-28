@@ -21,16 +21,17 @@
             <img class="innovation" src="./Fotos/innovation.png" alt="">
             <div class="navbar">
                 <div class="nav-left" id="navLinks">
-                    <a href="#Home">Home</a>
-                    <a href="#About">About</a>
-                    <a href="#Models">Models</a>
-                    <a href="#News">News</a>
+                    <a href="#Home" data-key="home">Home</a>
+                    <a href="#About" data-key="about">About</a>
+                    <a href="#Models" data-key="models">Models</a>
+
                 </div>
 
                 <div class="nav-right">
-                    <a href="#Shop">Shop</a>
-                    <a href="#Location">Location</a>
-                    <a href="#Contacts">Contact Us</a>
+                    <a href="#News" data-key="news">News</a>
+                    <a href="#Shop" data-key="shop">Shop</a>
+                    <a href="#Location" data-key="location">Location</a>
+                    <a href="#Contacts" data-key="contact">Contact Us</a>
                     <div class="lang-buttons">
                         <button onclick="changeLang('az')">AZ</button>
                         <button onclick="changeLang('en')">EN</button>
@@ -61,8 +62,8 @@
         </div>
         <section id="About" class="about">
             <div class="about-container">
-                <h2>About Mercedes-Benz Azerbaijan</h2>
-                <p>
+                <h2 data-key="aboutTitle">About Mercedes-Benz Azerbaijan</h2>
+                <p data-key="aboutText">
                     Mercedes-Benz has been a symbol of innovation in the automotive industry since 1886. In Azerbaijan,
                     we
                     offer our customers premium quality, reliability, and luxury.
@@ -94,7 +95,7 @@
 
 
         <section id="Models" class="models">
-            <h2>Our Models</h2>
+            <h2 data-key="modelsTitle">Our Models</h2>
             <div class="models-gallery">
 
                 <div class="model-card">
@@ -157,27 +158,16 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     <section id="Contacts" class="contact">
-        <h2>Contact Us</h2>
-        <p>We are here to assist you. Reach out to Mercedes-Benz Azerbaijan.</p>
+        <h2 data-key="contactTitle">Contact Us</h2>
+        <p data-key="contactText">We are here to assist you. Reach out to Mercedes-Benz Azerbaijan.</p>
 
         <div class="contact-container">
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit">Send Message</button>
+            <form id="contact-form" class="contact-form">
+                <input name="user_name" type="text" placeholder="Your Name" required>
+                <input name="user_email" type="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" data-key="sendBtn">Send Message</button>
             </form>
 
             <div class="contact-info">
@@ -217,8 +207,95 @@
                 mainContent.style.display = "block";
             }, 3000);
         });
+
+
+        const translations = {
+            en: {
+                home: "Home",
+                about: "About",
+                models: "Models",
+                news: "News",
+                shop: "Shop",
+                location: "Location",
+                contact: "Contact Us",
+
+                aboutTitle: "About Mercedes-Benz Azerbaijan",
+                aboutText: "Mercedes-Benz has been a symbol of innovation in the automotive industry since 1886.",
+
+                modelsTitle: "Our Models",
+
+                contactTitle: "Contact Us",
+                contactText: "We are here to assist you. Reach out to Mercedes-Benz Azerbaijan.",
+                sendBtn: "Send Message"
+            },
+
+            az: {
+                home: "Ana səhifə",
+                about: "Haqqımızda",
+                models: "Modellər",
+                news: "Xəbərlər",
+                shop: "Mağaza",
+                location: "Məkan",
+                contact: "Əlaqə",
+
+                aboutTitle: "Mercedes-Benz Azərbaycan haqqında",
+                aboutText: "Mercedes-Benz 1886-cı ildən avtomobil sahəsində innovasiyanın simvoludur.",
+
+                modelsTitle: "Modellərimiz",
+
+                contactTitle: "Bizimlə əlaqə",
+                contactText: "Sizə kömək etmək üçün buradayıq.",
+                sendBtn: "Mesaj göndər"
+            },
+
+            ru: {
+                home: "Главная",
+                about: "О нас",
+                models: "Модели",
+                news: "Новости",
+                shop: "Магазин",
+                location: "Локация",
+                contact: "Контакты",
+
+                aboutTitle: "О Mercedes-Benz Азербайджан",
+                aboutText: "Mercedes-Benz является символом инноваций с 1886 года.",
+
+                modelsTitle: "Наши модели",
+
+                contactTitle: "Связаться с нами",
+                contactText: "Мы всегда готовы помочь вам.",
+                sendBtn: "Отправить сообщение"
+            }
+        };
+
+        function changeLang(lang) {
+            document.querySelectorAll("[data-key]").forEach(el => {
+                const key = el.getAttribute("data-key");
+                el.textContent = translations[lang][key];
+            });
+        }
+
+        document.getElementById("contact-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            emailjs.sendForm("789089mb", "template_no6aer5", this)
+                .then(function () {
+                    alert("Message sent successfully!");
+                }, function (error) {
+                    alert("Failed to send message");
+                    console.log(error);
+                });
+        });
     </script>
+    <!--  -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <script>
+        (function () {
+            emailjs.init("QfPmb9ljmkBBpCUnW");
+        })();
+    </script>
 
 </body>
 
